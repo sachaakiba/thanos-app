@@ -1,9 +1,14 @@
 import React from 'react';
-import { Button, Image, StyleSheet, Text, View } from 'react-native';
-import { TextInput } from 'react-native-gesture-handler';
-import { Link } from "react-router-native";
+import {Image, StyleSheet, Text, View, Alert } from 'react-native';
+import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 
 function Login(props) {
+    title = 'Login'
+    titleBottom = "Register"
+
+    onPress = () => {
+        Alert.alert('Login Button')
+    }
     return (
         <View style={styles.background}>
             <Image
@@ -39,12 +44,18 @@ function Login(props) {
                             source={require('../../Assets/eye.png')}
                             />
                     </View>
+                          <TouchableOpacity onPress={onPress} style={styles.button}>
+                            <Text style={styles.appButtonText}>{title}</Text>
+                        </TouchableOpacity>                    
                 </View>
-                    <View style={styles.forgot}>
-                        <Link to={'#'}>
-                            <Text>Forgot your password ?</Text>
-                        </Link>
-                    </View>     
+                <View style={styles.bottomView}>
+                    <Text>
+                        Don't have an account ?
+                    </Text>
+                    <TouchableOpacity onPress={() => Alert.alert("hello")}>
+                            <Text style={styles.bottomButton}>{titleBottom}</Text>
+                    </TouchableOpacity>  
+                </View>
             </View>
         </View>
     );
@@ -52,10 +63,10 @@ function Login(props) {
 
 const styles = StyleSheet.create({
     background: {
-        flex: 1,
         display: "flex",
         flexDirection: "column",
-        alignItems: "center"
+        alignItems: "center",
+        justifyContent: "space-between",
     },
     centerScreen: {
         width: 326,
@@ -103,11 +114,32 @@ const styles = StyleSheet.create({
     input: {
         fontFamily: "Montserrat-Regular"
     },
-    forgot: {
-        display: 'flex',
-        alignItems: 'flex-end',
-        marginTop: 15,
+    button: {
+        width: 229,
+        height: 59,
+        borderRadius: 30,
+        marginTop: 50,
+        backgroundColor: "#0389A4",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: 'center',
+    },
+    appButtonText: {
+        color: '#FFFFFF',
+        //fontFamily: "Montserrat-Medium",
+        fontSize: 22,
 
+    },
+    bottomView: {
+        display: 'flex',
+        justifyContent: 'center',
+        flexDirection:'row',
+        alignItems: 'center',
+        marginTop: 200
+    },
+    bottomButton: {
+        fontWeight: "bold",
+        marginLeft: 10
     }
 })
 
